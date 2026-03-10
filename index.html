@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Kartu Ucapan Ramadhan Anas Family</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(#0F172A,#1E293B,#1e325a);
+font-family:Arial;
+overflow:hidden;
+color:white;
+}
+
+.container{
+text-align:center;
+position:relative;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#FFD700;
+cursor:pointer;
+font-weight:bold;
+font-family:Georgia, 'Times New Roman', Times, serif;
+margin-top:20px;
+}
+
+.amplop{
+position:relative;
+width:450px;
+height:290px;
+background: linear-gradient(#82f77e, #179406);
+margin:auto;
+margin-top:30px;
+box-shadow:0 0 20px rgba(83, 133, 3, 0.5);
+border-radius:10px;
+}
+
+.tutup{
+position:absolute;
+width:0;
+height:0;
+border-left:225px solid transparent;
+border-right:225px solid transparent;
+border-top:150px solid #139337;
+top:0;
+left:0;
+border-radius:10px;
+transform-origin:top;
+transition:1s;
+}
+
+.amplop.buka .tutup{
+transform:rotateX(180deg);
+}
+
+.card{
+position:absolute;
+width:300px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(5px);
+padding:30px;
+border-radius:10px;
+left:40px;
+top:50px;
+text-align:center;
+font-family:Georgia, 'Times New Roman', Times, serif;
+box-shadow:0 0 20px rgba(0,0,0,0.5);
+opacity:0;
+transform:translateY(70px);
+transition:1s;
+}
+
+.amplop.buka .card{
+opacity:1;
+transform:translateY(-120px);
+}
+
+.card h1{
+color:#ffff4a;
+}
+
+.card p{
+color:white;
+}
+
+.bintang{
+position:absolute;
+color:white;
+animation:kelapKelip 2s infinite alternate;
+}
+
+@keyframes kelapKelip{
+0%{opacity:0.2;}
+100%{opacity:1;}
+}
+
+.bulan{
+position:absolute;
+top:40px;
+left:40px;
+width:150px;
+height:150px;
+background:#FFD700;
+border-radius:50%;
+box-shadow:0 0 30px #FFD700;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BULAN -->
+<div class="bulan"></div>
+
+<!-- AUDIO -->
+<audio id="musik" loop>
+<source src="lebaran.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- BINTANG -->
+<script>
+for(let i=0;i<40;i++){
+let bintang=document.createElement("div");
+bintang.className="bintang";
+bintang.innerHTML="★";
+bintang.style.top=Math.random()*100+"%";
+bintang.style.left=Math.random()*100+"%";
+bintang.style.fontSize=(10+Math.random()*20)+"px";
+bintang.style.animationDuration=(1+Math.random()*3)+"s";
+document.body.appendChild(bintang);
+}
+</script>
+
+<div class="container">
+
+<button id="btnBuka" onclick="bukaKartu()">Buka Kartu</button>
+
+<div class="amplop" id="amplop">
+
+<div class="tutup"></div>
+
+<div class="card">
+
+<h1>
+    Minal Aidin <br>
+    wal Faizin <br>
+</h1>
+
+<p>
+kami dari Keluarga Anas Khairul Yakin <br>
+mengucapkan <br>
+Selamat Hari raya Idul fitri 1447 H.<br><br>
+
+Jalan-jalan sambil olahraga, <br>
+Di jalan ketemu bu titin,<br>
+Selamat hari raya dari kami sekeluarga, <br>
+Mohon Maaf lahir dan batin
+</p>
+
+<button onclick="kembali()">Back</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let musik=document.getElementById("musik");
+
+function bukaKartu(){
+
+document.getElementById("amplop").classList.add("buka");
+
+document.getElementById("btnBuka").style.display="none";
+
+musik.play(); // mulai musik
+
+}
+
+function kembali(){
+
+document.getElementById("amplop").classList.remove("buka");
+
+document.getElementById("btnBuka").style.display="inline-block";
+
+musik.pause(); // stop musik
+musik.currentTime=0; // reset lagu
+
+}
+
+</script>
+
+</body>
+</html>
